@@ -1,0 +1,33 @@
+{
+  "mappings": {
+    "properties": {
+      "id": {
+        "type": "keyword"
+      },
+      "title": {
+        "type": "search_as_you_type"
+      },
+      "author": {
+        "type": "keyword"
+      },
+      "publication_date": {
+        "type": "keyword"
+      },
+      "category": {
+        "type": "keyword"
+      },
+      "isbn": {
+        "type": "keyword"
+      },
+      "rating": {
+        "type": "keyword"
+      },
+	  "visible": {
+	    "type": "keyword"
+	  },
+	  "stock": {
+	    "type": "keyword"
+	  }
+    }
+  }
+}

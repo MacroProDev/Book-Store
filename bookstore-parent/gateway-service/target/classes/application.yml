@@ -1,0 +1,35 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: catalogue_route
+              uri: lb://catalogue-service
+              predicates:
+                - Path=/api/books/**
+            - id: orders_route
+              uri: lb://orders-service
+              predicates:
+                - Path=/api/orders/**
+            - id: users_route
+              uri: lb://users-service
+              predicates:
+                - Path=/api/v1/**
+          discovery:
+            locator:
+              enabled: true
+              lower-case-service-id: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${server.port}

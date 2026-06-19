@@ -1,0 +1,54 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: communication-service
+  rabbitmq:
+    host: ${RABBITMQ_HOST:localhost}
+    port: ${RABBITMQ_PORT:5672}
+    username: ${RABBITMQ_USERNAME:guest}
+    password: ${RABBITMQ_PASSWORD:guest}
+    virtual-host: ${RABBITMQ_VHOST:/}
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: macronest@gmail.com
+    password: wswa rnay xlgs ogmh
+    properties:
+      mail:
+        transport:
+          protocol: smtp
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+          ssl:
+            trust: smtp.gmail.com
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${server.port}
+
+rabbitmq:
+  queue:
+    mails:
+      order-created: mails.order.created
+  exchange:
+    orders: pedidos.creados
+  routing:
+    key:
+      order:
+        created: order.created
+
+email:
+  notification:
+    to: ${NOTIFICATION_EMAIL:macronest@gmail.com}
+    from: ${FROM_EMAIL:Relatos de papel <macronest@gmail.com>}
+gemini:
+  api:
+    key: AQ.Ab8RN6Jd432GHPmQdjL-m4tQN3p2fvsqJWXBSDNkapF1ppFYRA
